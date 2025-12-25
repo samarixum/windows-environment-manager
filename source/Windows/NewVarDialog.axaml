@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="environment_manager.NewVarDialog"
+        Title="New Variable" Width="400" Height="285"
+        WindowStartupLocation="CenterOwner" CanResize="False">
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="Name:"/>
+        <TextBox Name="TxtName"/>
+
+        <TextBlock Text="Initial Value:"/>
+        <TextBox Name="TxtValue"/>
+
+        <TextBlock Text="Scope:"/>
+        <ComboBox Name="CmbScope" HorizontalAlignment="Stretch">
+            <ComboBoxItem Content="User" IsSelected="True"/>
+            <ComboBoxItem Content="Machine"/>
+        </ComboBox>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,15,0,0">
+            <Button Content="Create" Click="OnCreateClick"/>
+            <Button Content="Cancel" Click="OnCancelClick"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

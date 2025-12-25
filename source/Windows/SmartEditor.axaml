@@ -1,0 +1,52 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:environment_manager"
+    x:Class="environment_manager.SmartEditor"
+    Title="Smart Editor" Width="900" Height="600"
+    WindowStartupLocation="CenterOwner">
+
+    <Grid ColumnDefinitions="*, 160">
+        <Grid Grid.Column="0" RowDefinitions="*, Auto">
+            <ListBox Name="PathList" Grid.Row="0" SelectionMode="Single" DoubleTapped="OnListDoubleTapped">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="local:Models.PathEntry">
+                                <Grid ColumnDefinitions="30, *">
+                                    <Ellipse Grid.Column="0" Width="12" Height="12" Fill="{Binding StatusColor}" VerticalAlignment="Center"/>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0">
+                                        <TextBlock Text="{Binding Path}" FontSize="14"/>
+                                        <TextBlock Text="{Binding ResolvedPath}" Foreground="Gray" FontSize="11"/>
+                                        <TextBlock
+                                            Text="{Binding ShadowedBy, StringFormat='Shadowed by: {0}'}"
+                                            IsVisible="{Binding IsShadowed}"
+                                            Foreground="Orange" FontSize="11" FontStyle="Italic"/>
+                                    </StackPanel>
+                                </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,8,0,8">
+                <TextBlock Text="Edit selected entry:" Opacity="0.8" Margin="4,6,0,2"/>
+                <TextBox
+                    Name="TxtEdit"
+                    DataContext="{Binding SelectedItem, ElementName=PathList}"
+                    x:DataType="local:Models.PathEntry"
+                    Text="{Binding Path, Mode=TwoWay}"
+                    AcceptsReturn="False"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Column="1" Spacing="10" Margin="10">
+            <Button Content="Add Folder..." Click="OnAddClick" HorizontalAlignment="Stretch"/>
+            <Button Content="Move Up" Click="OnUpClick" HorizontalAlignment="Stretch"/>
+            <Button Content="Move Down" Click="OnDownClick" HorizontalAlignment="Stretch"/>
+            <Button Content="Remove Selected" Click="OnRemoveClick" HorizontalAlignment="Stretch"/>
+            <Button Content="Remove All Dead" Click="OnCleanClick" HorizontalAlignment="Stretch" Foreground="#ff6b6b"/>
+
+            <Panel Height="20"/> <Button Content="Save (OK)" Click="OnSaveClick" HorizontalAlignment="Stretch" FontWeight="Bold"/>
+            <Button Content="Cancel" Click="OnCancelClick" HorizontalAlignment="Stretch"/>
+        </StackPanel>
+    </Grid>
+</Window>

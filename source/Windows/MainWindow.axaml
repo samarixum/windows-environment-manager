@@ -1,0 +1,85 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="using:environment_manager"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="700"
+        x:Class="environment_manager.MainWindow"
+        Title="Environment Variables"
+        WindowStartupLocation="CenterScreen"
+        MinWidth="500" MinHeight="600">
+
+    <Grid RowDefinitions="*, 10, *" Margin="15">
+
+        <Grid Grid.Row="0" RowDefinitions="Auto, *, Auto">
+            <TextBlock Text="User variables" FontWeight="Bold" Margin="0,0,0,5"/>
+
+            <Border Grid.Row="1" BorderBrush="#30000000" BorderThickness="1">
+                <Grid RowDefinitions="Auto, *">
+                    <Grid ColumnDefinitions="30, 150, *" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Height="25">
+                        <TextBlock Text="" Grid.Column="0"/> <TextBlock Text="Variable" Grid.Column="1" FontWeight="SemiBold" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBlock Text="Value" Grid.Column="2" FontWeight="SemiBold" VerticalAlignment="Center" Margin="5,0"/>
+                    </Grid>
+
+                    <ListBox Name="ListUser" Grid.Row="1" SelectionMode="Single" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="local:Models.EnvVarItem">
+                                <Grid ColumnDefinitions="30, 150, *">
+                                    <Ellipse Grid.Column="0" Width="10" Height="10"
+                                            Fill="{Binding StatusColor}"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" Margin="5,0,10,0"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Value}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10" Margin="0,10,0,0" HorizontalAlignment="Right">
+                <Button Content="New..." Click="OnNewUserClick" Width="80"/>
+                <Button Content="Edit..." Click="OnEditUserClick" Width="80"/>
+                <Button Content="Delete" Click="OnDeleteUserClick" Width="80"/>
+            </StackPanel>
+        </Grid>
+
+        <GridSplitter Grid.Row="1" ResizeDirection="Rows" Background="Transparent"/>
+
+        <Grid Grid.Row="2" RowDefinitions="Auto, *, Auto">
+            <TextBlock Text="System variables" FontWeight="Bold" Margin="0,0,0,5"/>
+
+            <Border Grid.Row="1" BorderBrush="#30000000" BorderThickness="1">
+                <Grid RowDefinitions="Auto, *">
+                    <Grid ColumnDefinitions="30, 150, *" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Height="25">
+                        <TextBlock Text="" Grid.Column="0"/>
+                        <TextBlock Text="Variable" Grid.Column="1" FontWeight="SemiBold" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBlock Text="Value" Grid.Column="2" FontWeight="SemiBold" VerticalAlignment="Center" Margin="5,0"/>
+                    </Grid>
+
+                    <ListBox Name="ListSystem" Grid.Row="1" SelectionMode="Single" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="local:Models.EnvVarItem">
+                                <Grid ColumnDefinitions="30, 150, *">
+                                    <Ellipse Grid.Column="0" Width="10" Height="10"
+                                            Fill="{Binding StatusColor}"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" Margin="5,0,10,0"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Value}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10" Margin="0,10,0,0" HorizontalAlignment="Right">
+                <Button Content="New..." Click="OnNewSystemClick" Width="80"/>
+                <Button Content="Edit..." Click="OnEditSystemClick" Width="80"/>
+                <Button Content="Delete" Click="OnDeleteSystemClick" Width="80"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

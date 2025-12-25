@@ -1,0 +1,12 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="environment_manager.TextDialog"
+        Width="300" Height="150" WindowStartupLocation="CenterOwner">
+    <StackPanel Margin="20" Spacing="15">
+        <TextBlock Name="MsgText" TextWrapping="Wrap"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+            <Button Name="BtnOk" Content="OK" Click="OnOk"/>
+            <Button Name="BtnCancel" Content="Cancel" Click="OnCancel" IsVisible="False"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
